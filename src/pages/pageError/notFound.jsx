@@ -24,7 +24,7 @@ const NotFound = () => {
         />
       </Typography>
       <Typography align="center" color="grey" variant="h6" mb={3}>
-        متاسفانه صفحه مورد نظر شما یافت نشد
+        sorry,page not found
       </Typography>
 
       <Button
@@ -35,7 +35,7 @@ const NotFound = () => {
         color="info"
         fullwidth
       >
-        بازگشت به صفحه اصلی
+        Back to Dashboard
       </Button>
     </Typography>
   );

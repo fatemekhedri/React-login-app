@@ -11,7 +11,6 @@ import {
   List,
 } from "@mui/material";
 const UserComponent = memo((user) => {
-  console.log("user", user);
   const { first_name, last_name, email, avatar } = user;
   const navigate = useNavigate();
   return (

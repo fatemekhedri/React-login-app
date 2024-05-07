@@ -22,7 +22,7 @@ const router = createBrowserRouter(
           path="dashboard"
           errorElement={<ErrorElement />}
           element={<Profile />}
-       />
+        />
       </Route>
       {/* check Authentication */}
       <Route
@@ -30,7 +30,7 @@ const router = createBrowserRouter(
         element={
           <Navigate
             to={
-              localStorage.getItem("token")
+              JSON.parse(localStorage.getItem("user"))?.token
                 ? "/dashboard"
                 : "/authentication/login"
             }

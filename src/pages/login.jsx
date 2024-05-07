@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, TextField, Box, Typography, Container } from "@mui/material";
+import { Button, TextField, Typography, Container } from "@mui/material";
 
 import axios from "axios";
 const Login = () => {
@@ -9,23 +9,22 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    console.log("login kard", email, password);
     e.preventDefault();
-    const tempUser = {
-      email: "eve.holt@reqres.in",
-      password: "cityslicka",
-    };
+    // const tempUser = {
+    //   email: "eve.holt@reqres.in",
+    //   password: "cityslicka",
+    // };
+    // User authentication
     axios
       .post("https://reqres.in/api/login", { email, password })
       .then((res) => {
-        console.log("result", res);
+        
         const { data } = res;
         const user = {
-          email: "eve.holt@reqres.in",
+          email: email,
           token: data.token || "",
         };
         localStorage.setItem("user", JSON.stringify(user));
-
         navigate("/dashboard");
       })
       .catch((err) => {

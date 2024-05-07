@@ -5,14 +5,16 @@ import UserComponent from "../component/profile/userComponent";
 import { Grid, Box } from "@mui/material";
 
 const Profile = () => {
-  const [pageNumber, setPageNumber] = useState("1");
+  // const [pageNumber, setPageNumber] = useState("1");
   const [userList, SetUserList] = useState([]);
   const [profileUser, setProfileUser] = useState({});
   useEffect(() => {
+    // Read a authenticated user to search for its name among the list of users
     const currentUser = JSON.parse(localStorage.getItem("user"));
-    console.log("currentUser", currentUser);
+
+    // Getting the list of all users and filtering the authenticated user and displaying its information and the list of users
     axios
-      .get(`https://reqres.in/api/users?page=${pageNumber}`)
+      .get(`https://reqres.in/api/users?page=1`)
       .then((response) => {
         if (response?.data?.data && response?.data?.total) {
           return axios.get(
@@ -21,12 +23,11 @@ const Profile = () => {
         }
       })
       .then((res) => {
-        console.log("new res", res);
         const data = res.data.data || [];
-        console.log("data", data);
+
         let currentUserInfo =
           data.filter((usr) => usr.email == currentUser.email)[0] || {};
-        console.log("currentUserInfo", currentUserInfo);
+
         setProfileUser(currentUserInfo);
         SetUserList(data);
       })
@@ -38,8 +39,10 @@ const Profile = () => {
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={3}>
+          {/* Display authenticated user information */}
           <UserComponent {...profileUser} />
         </Grid>
+        {/* Show all users */}
         <Grid item xs={9}>
           <UserList {...userList} />
         </Grid>
